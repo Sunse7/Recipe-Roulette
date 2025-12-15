@@ -1,0 +1,13 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/allRecipe")({
+  component: AllRecipes,
+});
+
+function AllRecipes() {
+  return (
+    <>
+      <h3>All Recipes!</h3>
+    </>
+  );
+}
