@@ -1,0 +1,58 @@
+// Anslut till docker db så här:
+mongodb://Lucky:password@localhost:27017/
+
+// För bilden
+ C:\users\Sunset\Desktop\ReceptBilder> http-server -p 8080
+
+
+// Ex på hur ett recept kan vara uppbyggt
+{
+  "_id": "unikIdentifierare123",
+  "title": "Mitt Favoritrecept",
+  "description": "En kort beskrivning av rätten.",
+  "prepTime": 20, // (Minuter)
+  "cookTime": 40,  // (Minuter)
+  
+  // 1. Ingredienser: Lagras som en Array av Strängar
+  // Perfekt för sökning (finns 'pasta' i listan?)
+  "ingredients": [
+    "200g pasta (tagliatelle)",
+    "3 äggulor",
+    "150g Guanciale eller bacon",
+    "50g riven Pecorino"
+  ],
+
+  // 2. Gör så här (Instruktioner): Lagras som en Array av Steg
+  // Perfekt för att visa stegen i ordning
+  "instructions": [
+    "Koka pastan al dente.",
+    "Stek Guanciale tills den är krispig.",
+    "Blanda äggulor och ost i en skål.",
+    "Vänd ner pastan och den varma Guanciale (ej fettet) i ostblandningen."
+  ],
+  
+  // 3. Bildlänk (Image URL)
+  // Själva bilden ska lagras i en separat Fillagringstjänst (t.ex. S3 eller Cloudinary), 
+  // och DOKUMENTET sparar bara länken till den bilden.
+  "imageURL": "https://dinsajt.com/receptbilder/pasta_carbonara_v1.jpg",
+
+  // 4. Taggar: En array för sökning/filtrering
+  "tags": [
+    "Middag",
+    "Italienskt",
+    "Snabbmat",
+    "Kolhydrater"
+  ],
+  
+  "createdAt": "2025-12-15T16:00:00Z"
+}
+
+// Ex skapa recept på detta vis
+Hur det fungerar: Du har ett stort (<textarea>). Användaren skriver in varje element på en ny rad eller separerar dem med ett kommatecken.
+React/JavaScript-hantering: När du sedan skickar formuläret använder du en enkel funktion som split() för att konvertera den långa strängen till en array.
+Ingredienser,<textarea>,inputStr.split('\n') (Splitta på ny rad)
+Taggar,"<input type=""text"">","inputStr.split(',').map(tag => tag.trim()) (Splitta på kommatecken och rensa bort mellanslag)"
+
+Detta är det bästa valet för Instruktioner (instructions), eftersom du vill vara säker på att stegen hamnar i rätt ordning och inte av misstag slås ihop.
+Hur det fungerar: Du visar en lista med <input type="text">-fält. Under listan finns en knapp som heter "Lägg till steg". När du klickar på den, lägger React till ett nytt, tomt textfält till listan.
+React-hantering: Du använder Reacts useState med en array. Varje gång du klickar på "Lägg till steg" uppdaterar du state-arrayen med ett nytt tomt element. Alla fält uppdaterar sedan arrayen i realtid.

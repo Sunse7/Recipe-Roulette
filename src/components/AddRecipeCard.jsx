@@ -1,6 +1,11 @@
-import React from 'react'
+import Button from "./Button";
 
 export default function AddRecipeCard() {
+  function handleClick() {
+    console.log('Clicked save!');
+    
+  }
+
   return (
     <>
       <section>
@@ -11,6 +16,7 @@ export default function AddRecipeCard() {
         <p>Gör så här:</p>
         <textarea />
       </section>
+      <Button title='Spara' onClick={handleClick()} />
     </>
   )
 }

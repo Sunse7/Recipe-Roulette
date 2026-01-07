@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from '@tanstack/react-router';
+import style from './Navbar.module.scss';
 
 export default function Navbar() {
   return (
